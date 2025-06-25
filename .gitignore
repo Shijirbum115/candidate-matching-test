@@ -1,0 +1,58 @@
+# ------------------------
+# Python-related
+# ------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+node_modules/
+
+# Build directories
+dist/
+build/
+
+# ------------------------
+# Jupyter Notebooks
+# ------------------------
+.ipynb_checkpoints/
+
+# ------------------------
+# Data and Results
+# ------------------------
+data/
+results/
+cv_input/
+masked_output/
+
+# ------------------------
+# Secrets and Configs
+# ------------------------
+.env
+.venv
+.history
+# ------------------------
+# IDE and Editor Junk
+# ------------------------
+.idea/
+.vscode/
+*.swp
+
+# ------------------------
+# Miscellaneous
+# ------------------------
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+.DS_Store

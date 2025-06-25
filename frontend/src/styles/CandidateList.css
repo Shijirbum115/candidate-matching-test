@@ -1,0 +1,731 @@
+/* src/styles/CandidateList.css - Complete File */
+
+.candidate-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 10rem; 
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; 
+  overscroll-behavior: contain; 
+  
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.candidate-list::-webkit-scrollbar {
+  display: none;
+}
+
+.main-content {
+  overflow-y: auto;
+  height: 100vh;
+  
+  /* Hide scrollbar for main content as well */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Also make sure the results container allows scrolling */
+.results-container {
+  height: calc(100vh - 120px); 
+  overflow-y: auto;
+  
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.results-container::-webkit-scrollbar {
+  display: none;
+}
+
+.candidate-list h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.candidates {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Use this to optimize rendering of list items */
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* New Candidate Card Design */
+.candidate-card-new {
+  background-color: var(--primary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  min-height: 140px;
+}
+
+.candidate-card-new:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.candidate-card-new.selected {
+  border-color: var(--accent-color);
+  background-color: var(--selected-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar Styles */
+.candidate-avatar {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  background-color: #f3f4f6;
+}
+
+.candidate-card-new:hover .avatar-image {
+  transform: scale(1.05);
+  border-color: var(--accent-color);
+}
+
+.candidate-card-new.selected .avatar-image {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Candidate Info Container */
+.candidate-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0; /* Prevents overflow issues */
+}
+
+/* Info Rows */
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary-row {
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.application-row {
+  margin-bottom: 2px;
+}
+
+.experience-row,
+.details-row {
+  gap: 24px;
+}
+
+/* Candidate Name */
+.candidate-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Badges Container */
+.badges-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Badge Styles */
+.badge {
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.score-badge {
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 12px;
+}
+
+/* PST Badge Colors */
+.pst-badge.pst-failed {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+
+.pst-badge.pst-eligible {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.pst-badge.pst-passed {
+  background-color: #dcfce7;
+  color: #16a34a;
+  border: 1px solid #86efac;
+}
+
+.pst-badge.pst-excellent {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+}
+
+/* Info Items */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.info-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Icon color variations */
+.experience-icon {
+  color: #0288d1;
+}
+
+.company-icon {
+  color: #7b1fa2;
+}
+
+.position-icon {
+  color: #388e3c;
+}
+
+.education-icon {
+  color: #f57c00;
+}
+
+.info-label {
+  font-size: 11px;
+  color: var(--secondary-text);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 13px;
+  color: var(--primary-text);
+  font-weight: 500;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.university-suffix {
+  font-weight: 400;
+  color: var(--secondary-text);
+}
+
+/* Last Application Container for New Layout */
+.last-application-container {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.last-application-container.loading {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.last-application-container.empty {
+  background-color: #f9fafb;
+  border-color: #f3f4f6;
+}
+
+/* Last Application Styles */
+.loading-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #64748b;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+  font-size: 11px;
+  color: #64748b;
+  opacity: 0.8;
+}
+
+.empty-text {
+  font-size: 11px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.application-label {
+  font-size: 10px;
+  color: #475569;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.application-title {
+  font-size: 12px;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.application-date-list {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  color: var(--secondary-text);
+  padding: 40px;
+  background-color: var(--accent-bg);
+  border-radius: 8px;
+  margin: 32px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .candidate-card-new {
+    padding: 14px;
+    gap: 14px;
+  }
+  
+  .candidate-avatar {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .experience-row,
+  .details-row {
+    gap: 16px;
+  }
+  
+  .info-item {
+    min-width: 120px;
+  }
+  
+  .badges-container {
+    gap: 6px;
+  }
+  
+  .badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  
+  .info-icon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .candidate-card-new {
+    padding: 12px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .candidate-avatar {
+    width: 56px;
+    height: 56px;
+    align-self: flex-start;
+  }
+  
+  .primary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .badges-container {
+    align-self: flex-end;
+    margin-top: -40px;
+  }
+  
+  .experience-row,
+  .details-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .info-item {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .candidate-name {
+    font-size: 16px;
+    width: 100%;
+    padding-right: 120px;
+  }
+  
+  .last-application-container {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .info-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .candidate-card-new {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .candidate-avatar {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .candidate-name {
+    font-size: 15px;
+    padding-right: 100px;
+  }
+  
+  .badges-container {
+    gap: 4px;
+    margin-top: -36px;
+  }
+  
+  .badge {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  
+  .info-label {
+    font-size: 10px;
+  }
+  
+  .info-value {
+    font-size: 12px;
+  }
+  
+  .info-icon {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* Animation for smooth card appearance */
+.candidate-card-new {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Golden sparkle effect for excellent PST scores */
+.pst-excellent::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Add these styles to your CandidateList.css file */
+
+/* Candidate List Header Styles */
+.candidate-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  gap: 16px;
+}
+
+.candidate-list-header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--primary-text);
+  flex: 1;
+}
+
+/* PST Filter Button Styles */
+.pst-filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 16px;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 10px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: fit-content;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pst-filter-button:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+  color: #4b5563;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pst-filter-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Active (toggled) state - Red color */
+.pst-filter-button.active {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.2);
+}
+
+.pst-filter-button.active:hover {
+  background-color: #fee2e2;
+  border-color: #f87171;
+  color: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+}
+
+/* Focus styles for accessibility */
+.pst-filter-button:focus {
+  outline: none;
+  ring: 2px solid rgba(59, 130, 246, 0.5);
+  ring-offset: 2px;
+}
+
+.pst-filter-button.active:focus {
+  ring: 2px solid rgba(220, 38, 38, 0.5);
+}
+/* Add to frontend/src/styles/CandidateList.css */
+
+/* Saved candidates mode styling */
+.saved-candidates-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.saved-search-name {
+  display: flex;
+  align-items: center;
+  background-color: #fffbeb;
+  color: #92400e;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #fbbf24;
+}
+
+.saved-search-name svg {
+  color: #fbbf24;
+}
+
+/* Special styling for saved candidate cards */
+.candidate-card-new.saved-candidate-mode {
+  border-left: 4px solid #fbbf24;
+  background: linear-gradient(to right, #fffbeb 0%, #ffffff 10%);
+}
+
+.candidate-card-new.saved-candidate-mode:hover {
+  border-left-color: #f59e0b;
+  background: linear-gradient(to right, #fef3c7 0%, #ffffff 10%);
+}
+
+.candidate-card-new.saved-candidate-mode.selected {
+  border-left-color: #d97706;
+  background: linear-gradient(to right, #fed7aa 0%, #f0f9ff 10%);
+}
+
+/* Saved candidate mode header adjustments */
+.candidate-list-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Add golden star icon for saved candidates header */
+.candidate-list[data-saved-mode="true"] .candidate-list-header h2::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fbbf24'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Responsive adjustments for saved mode */
+@media (max-width: 768px) {
+  .saved-candidates-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .saved-search-name {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+  
+  .candidate-card-new.saved-candidate-mode {
+    border-left-width: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .saved-search-name {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .candidate-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .candidate-list-header h2 {
+    font-size: 18px;
+  }
+  
+  .pst-filter-button {
+    align-self: flex-end;
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .candidate-list-header {
+    gap: 8px;
+  }
+  
+  .candidate-list-header h2 {
+    font-size: 16px;
+  }
+  
+  .pst-filter-button {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+  }
+}

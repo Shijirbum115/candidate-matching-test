@@ -1,0 +1,621 @@
+/* 1. SAVED CANDIDATES VIEW STYLES */
+/* frontend/src/styles/SavedCandidatesView.css */
+
+.saved-candidates-view {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .saved-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  .saved-search-info {
+    flex: 1;
+  }
+  
+  .saved-search-title {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin-bottom: 12px;
+  }
+  
+  .saved-search-title svg {
+    color: #fbbf24;
+    margin-right: 8px;
+  }
+  
+  .search-query-info {
+    background-color: var(--accent-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #fbbf24;
+  }
+  
+  .search-query-text {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: var(--primary-text);
+  }
+  
+  .search-date {
+    margin: 0;
+    font-size: 12px;
+    color: var(--secondary-text);
+  }
+  
+  .saved-stats {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--accent-bg);
+    border-radius: 8px;
+    min-width: 80px;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fbbf24;
+    line-height: 1;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  
+  /* No saved candidates state */
+  .no-saved-candidates {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 32px;
+    text-align: center;
+    background-color: var(--accent-bg);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color);
+  }
+  
+  .no-saved-icon {
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  
+  .no-saved-icon svg {
+    color: var(--secondary-text);
+  }
+  
+  .no-saved-candidates h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--primary-text);
+  }
+  
+  .no-saved-candidates p {
+    color: var(--secondary-text);
+    margin: 0;
+  }
+  
+  /* Saved candidates list */
+  .saved-candidates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .saved-candidate-card {
+    background-color: var(--primary-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .saved-candidate-card:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.15);
+    transform: translateY(-1px);
+  }
+  
+  .saved-candidate-card.selected {
+    border-color: #fbbf24;
+    background-color: #fffbeb;
+    box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+  }
+  
+  .saved-candidate-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .saved-candidate-card:hover::before {
+    opacity: 0.1;
+  }
+  
+  .contact-row {
+    margin: 8px 0;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--secondary-text);
+    background-color: var(--accent-bg);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .contact-item svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  
+  .saved-info-row {
+    margin: 8px 0;
+  }
+  
+  .saved-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .saved-date {
+    font-size: 12px;
+    color: var(--secondary-text);
+    font-weight: 500;
+  }
+  
+  .saved-note {
+    font-size: 12px;
+    color: var(--primary-text);
+    font-style: italic;
+    background-color: var(--accent-bg);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid #fbbf24;
+  }
+  
+  /* Loading states */
+  .loading-container, .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    text-align: center;
+  }
+  
+  .retry-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background-color 0.2s;
+  }
+  
+  .retry-button:hover {
+    background-color: #0d8c6b;
+  }
+  
+  /* 2. UPDATED CANDIDATE LIST STYLES */
+  /* Add to frontend/src/styles/CandidateList.css */
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .saved-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #fffbeb;
+    color: #92400e;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #fbbf24;
+  }
+  
+  .saved-count svg {
+    width: 12px;
+    height: 12px;
+    color: #fbbf24;
+  }
+  
+  /* 3. UPDATED CANDIDATE DETAIL STYLES */
+  /* Add to frontend/src/styles/CandidateDetail.css */
+  
+  .name-and-star {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .name-and-star h2 {
+    margin: 0;
+    flex: 1;
+  }
+  
+  /* 4. UPDATED SIDEBAR STYLES */
+  /* Add to frontend/src/styles/Sidebar.css */
+  
+  .saved-searches h3 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--secondary-text);
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .saved-searches h3 svg {
+    color: #fbbf24;
+  }
+  
+  .saved-candidates-count {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background-color: #fffbeb;
+    color: #92400e;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid #fbbf24;
+  }
+  
+  .saved-candidates-count svg {
+    width: 8px;
+    height: 8px;
+    color: #fbbf24;
+  }
+  
+  /* 5. STAR BUTTON STYLES */
+  /* frontend/src/styles/StarButton.css - Create new file */
+  
+  .star-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .star-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(1.1);
+  }
+  
+  .star-button.unstarred {
+    color: #9ca3af;
+  }
+  
+  .star-button.unstarred:hover {
+    color: #fbbf24;
+  }
+  
+  .star-button.starred {
+    color: #fbbf24;
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.3));
+  }
+  
+  .star-button.starred:hover {
+    color: #f59e0b;
+    transform: scale(1.15);
+  }
+  
+  .star-button.animating {
+    animation: starPulse 0.3s ease-in-out;
+  }
+  
+  .star-button.loading {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  
+  .loading-spinner-small {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #fbbf24;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes starPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Size variations */
+  .star-button.small {
+    padding: 2px;
+  }
+  
+  .star-button.medium {
+    padding: 4px;
+  }
+  
+  .star-button.large {
+    padding: 6px;
+  }
+  
+  /* Golden glow effect for starred state */
+  .star-button.starred::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .star-button.starred:hover::before {
+    opacity: 1;
+  }
+  
+  /* 6. RESPONSIVE STYLES */
+  
+  @media (max-width: 768px) {
+    .saved-candidates-view {
+      padding: 16px;
+    }
+    
+    .saved-header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    
+    .saved-search-title {
+      font-size: 24px;
+    }
+    
+    .saved-stats {
+      align-self: stretch;
+      justify-content: center;
+    }
+    
+    .saved-candidate-card {
+      padding: 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .candidate-avatar {
+      width: 56px;
+      height: 56px;
+      align-self: center;
+    }
+    
+    .contact-info {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .header-actions {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    
+    .name-and-star {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .saved-search-title {
+      font-size: 20px;
+    }
+    
+    .search-query-info {
+      padding: 8px 12px;
+    }
+    
+    .saved-candidate-card {
+      padding: 12px;
+    }
+    
+    .candidate-avatar {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .header-actions {
+      width: 100%;
+      align-items: stretch;
+    }
+    
+    .pst-filter-button,
+    .saved-count {
+      justify-content: center;
+    }
+  }
+  
+  /* 7. ANIMATION ENHANCEMENTS */
+  
+  .saved-candidate-card {
+    animation: fadeInUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .saved-candidates-list .saved-candidate-card:nth-child(1) { animation-delay: 0ms; }
+  .saved-candidates-list .saved-candidate-card:nth-child(2) { animation-delay: 50ms; }
+  .saved-candidates-list .saved-candidate-card:nth-child(3) { animation-delay: 100ms; }
+  .saved-candidates-list .saved-candidate-card:nth-child(4) { animation-delay: 150ms; }
+  .saved-candidates-list .saved-candidate-card:nth-child(5) { animation-delay: 200ms; }
+  
+  /* Subtle pulse for newly saved items */
+  .saved-candidate-card.newly-saved {
+    animation: savedPulse 0.6s ease-in-out;
+  }
+  
+  @keyframes savedPulse {
+    0% { 
+      box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+      transform: scale(1.02);
+    }
+    100% { 
+      box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+      transform: scale(1);
+    }
+  }
+  
+  /* 8. ACCESSIBILITY ENHANCEMENTS */
+  
+  .star-button:focus {
+    outline: 2px solid #fbbf24;
+    outline-offset: 2px;
+  }
+  
+  .saved-candidate-card:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .saved-search-item:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .star-button.starred {
+      color: #000;
+      background-color: #fbbf24;
+      border: 2px solid #000;
+    }
+    
+    .saved-candidate-card {
+      border-width: 3px;
+    }
+    
+    .saved-count {
+      border-width: 2px;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .star-button,
+    .saved-candidate-card,
+    .saved-search-item {
+      transition: none;
+    }
+    
+    .star-button.animating {
+      animation: none;
+    }
+    
+    .saved-candidate-card {
+      animation: none;
+    }
+  }
+  
+  /* 9. PRINT STYLES */
+  @media print {
+    .star-button,
+    .pst-filter-button,
+    .saved-count {
+      display: none;
+    }
+    
+    .saved-candidate-card {
+      border: 1px solid #000;
+      break-inside: avoid;
+      margin-bottom: 16px;
+    }
+    
+    .saved-header {
+      border-bottom: 2px solid #000;
+    }
+  }
