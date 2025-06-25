@@ -1,21 +1,52 @@
-# Core dependencies
+#############################
+# Core Web Dependencies
+#############################
 fastapi==0.104.1
-uvicorn==0.23.2
+uvicorn[standard]==0.23.2          # includes httptools & uvloop for production
 python-dotenv==1.0.0
 
+#############################
 # OpenAI
-openai>=1.0.0
+#############################
+openai>=1.0.0,<1.25.0              # stay below the 1.25 breaking change
 
-# Database
+#############################
+# PostgreSQL & Vector
+#############################
 psycopg2-binary==2.9.9
 asyncpg==0.29.0
+pgvector==0.2.4                    # python binding for pgvector extension
 
-# Utilities
+#############################
+# Elasticsearch
+#############################
+elasticsearch==8.13.2              # 8.x client for ES / OpenSearch
+
+#############################
+# Data & ML Utilities
+#############################
 numpy==1.26.1
+pandas==2.2.2
+scipy==1.13.0
+scikit-learn==1.4.2
+python-dateutil==2.9.0.post0
+tqdm==4.66.4
+
+#############################
+# Pydantic / Validation
+#############################
 pydantic==2.4.2
+pydantic-settings==2.0.3
 python-multipart==0.0.6
 email-validator==2.0.0
 
-# Logging and monitoring
+#############################
+# Logging and Monitoring
+#############################
 structlog==23.2.0
-pydantic-settings==2.0.3
+backoff==2.2.1                     # exponential-backoff helper for retries
+
+#############################
+# Optional – Async HTTP client for external calls
+#############################
+httpx==0.27.0
